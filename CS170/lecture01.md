@@ -1,1 +1,34 @@
+# Intro to Computer Vision and Computational Photography
 
+## Intro
+
+- HSfM: Reconstructing People, Places, and Cameras
+- 4D Ayuna
+
+### 4D Perception of People
+
+**4D Perception of People** refers to the computational task of reconstructing and understanding human movement in both **3D space** and **time**. 
+
+* **Objective:** To recover a temporally consistent sequence of 3D human meshes or skeletons from 2D visual inputs (e.g., monocular smartphone videos).
+* **Key Approach:** Leveraging deep learning and human body priors to bridge the gap between 2D pixels and 4D structural dynamics, as exemplified by the **4D Ayuna** project (Goel et al., ICCV 2023).
+* **Significance:** Enables high-fidelity human motion capture and scene understanding without the need for specialized multi-camera setups or markers.
+
+**Textbooks**
+- [Computer Vision: Algorithms and Applications, 2nd Edition](https://szeliski.org/Book/)
+- [Foundations of Computer Vision](https://mitpress.mit.edu/9780262048972/foundations-of-computer-vision/)
+
+  | **Feature**  | **Traditional Graphics (Simulation)**                    | **Modern Graphics (High-Fidelity)**                        | **Computational Photography (Data-Driven)**                  |
+  | ------------ | -------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+  | **Method**   | Math-based 3D geometry & physics.                        | Advanced Ray-tracing & Neural Rendering.                   | Leveraging real-world image data.                            |
+  | **Logic**    | **Geometry $\rightarrow$ Image**: Building from scratch. | **Physics $\rightarrow$ Image**: Precise but "clean."      | **Image + Data $\rightarrow$ New Image**: Manipulating reality. |
+  | **The Vibe** | Artificial and "Computer-ish."                           | **Sterile, Lifeless, Futuristic**: Too perfect to be real. | **Rich, Messy, Authentic**: Contains real-world "noise."     |
+  | **Strength** | Total control over every object.                         | Extreme visual polish.                                     | Instant realism and "complexity."                            |
+Modern Computer Graphics: But so sterile, lifeless, futuristic (why?)
+
+| **Missing Link**        | **The Problem in Simulators**                               | **The Failure in Reality**                                   |
+| ----------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| **Entropy (Sterility)** | Deterministic, "perfect" physics with no friction or noise. | Robot collapses when facing "messy" variables like dust or slips. |
+| **Success Trap**        | Training solely on optimal trajectories.                    | No "Common Sense" to recognize failures or abort hopeless tasks. |
+| **Dynamic Complexity**  | Visuals are high-fidelity but static/structural.            | Model fails to navigate stochastic elements (people, wind, chaos). |
+
+**Insight** : For a robot to truly perceive the world, it needs a "Messy World Model"—one that learns from the entropy of real pixels rather than the sterile perfection of hand-crafted simulations.
