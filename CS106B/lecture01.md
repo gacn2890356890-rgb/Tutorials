@@ -37,7 +37,7 @@ reporting in this class so we will always return zero)
 * **Usage**: After the initial declaration, use only the variable name without repeating the type.
 
 **Example Syntax:**
-```
+```cpp
 int x = 42;        // Declaration: type (int) + name (x)
 x = x + 7;         // Usage: name only
 ```
@@ -52,6 +52,7 @@ for (int i = 0; i < 10; i++) {
     /* two comment styles: 
        double slash for single line, 
        slash-star for blocks */
+
 }
 
 // while loops and logic
@@ -65,3 +66,16 @@ while (letter != 'Q' && !done) {
 binky(pi, 17);             // function call
 winky("this is a string"); // string usage
 ```
+
+### **C++ Logistical Details (2.2)**
+
+#### **1. Library Includes (`#include`)**
+The `#include` directive attaches external libraries to your program. Note the syntax differences to avoid common bugs:
+* **`<libraryname>`**: Used for **Standard C++ Libraries** (e.g., `<iostream>`). These typically do **not** have a `.h` extension.
+* **`"libraryname.h"`**: Used for **Local Project Libraries** (e.g., `"console.h"`). These typically **do** have a `.h` extension.
+
+#### **2. Namespaces (`using namespace`)**
+A namespace organizes features into groups to avoid naming conflicts. 
+* **Purpose**: `using namespace name;` brings a group of features into the **global scope** so you can refer to them directly (e.g., using `cout` instead of `std::cout`).
+* **Standard Library**: Most standard features are in the `std` (short for "standard") namespace.
+* **Pragmatic Advice**: For now, simply copy and paste `using namespace std;` at the top of your programs to make standard features accessible.
