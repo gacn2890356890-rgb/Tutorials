@@ -57,3 +57,23 @@ Why not make the aperture infinitely small?(The reason for lenses)
 * **Trade-off 2: Geometry vs. Physics (Diffraction)** * **Large Aperture:** Blurring is caused by **ray overlap** (multiple rays hitting the same spot).
     * **Tiny Aperture:** Blurring is caused by **Diffraction**, where light waves bend around the edges of the hole, spreading the light back out.
 * **The "Sweet Spot":** There is an optimal aperture size where the sum of geometric blur and diffraction blur is minimized (shown as ~0.35mm in the slides).
+
+| **Feature**       | **Depth of Field (DOF)**                                     | **Field of View (FOV)**                                      |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Definition**    | The range of distances over which objects appear sharply focused. | The extent of the observable world seen by the camera at a given moment. |
+| **Core Variable** | **Aperture**                                                 | **Focal Length**                                             |
+| **Parameter**     | **F-number** ($f/D$)                                         | **Zoom** (Magnification)                                     |
+| **Math Logic**    | Smaller aperture (Higher F-number) $\rightarrow$ **Deeper DOF**. | Shorter focal length ($f$) $\rightarrow$ **Larger FOV** ($\phi$). |
+| **Visual Effect** | **Large Aperture:** Shallow DOF (bokeh/blurred background). **Small Aperture:** Deep DOF (everything in focus). | **Telephoto:** Narrow angle (Zoom in). **Wide-angle:** Broad angle (Zoom out). |
+
+**Field of View (FOV) Calculation**
+
+The size of the Field of View ($\phi$) is governed by the size of the camera sensor/retina ($d$) and the focal length ($f$):
+
+$$\phi = 2 \tan^{-1}\left(\frac{d}{2f}\right)$$
+
+* **$d$**: Sensor size (width or diagonal).
+* **$f$**: Focal length.
+* **$\phi$**: Field of View angle.
+
+**Key takeaway:** A smaller FOV corresponds to a larger Focal Length (Zoom in), while a larger FOV corresponds to a smaller Focal Length (Wide angle).
