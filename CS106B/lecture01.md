@@ -41,3 +41,27 @@ reporting in this class so we will always return zero)
 int x = 42;        // Declaration: type (int) + name (x)
 x = x + 7;         // Usage: name only
 ```
+### **More C++ Syntax Examples (1.5-1.8)**
+
+```cpp
+// for loops
+for (int i = 0; i < 10; i++) { 
+    if (i % 2 == 0) { // if statements
+        x += i;
+    } 
+    /* two comment styles: 
+       double slash for single line, 
+       slash-star for blocks */
+}
+
+// while loops and logic
+while (letter != 'Q' && !done) { 
+    x = x / 2;
+    if (x == 42) { 
+        return 0; 
+    }
+}
+
+binky(pi, 17);             // function call
+winky("this is a string"); // string usage
+```
