@@ -77,3 +77,22 @@ $$\phi = 2 \tan^{-1}\left(\frac{d}{2f}\right)$$
 * **$\phi$**: Field of View angle.
 
 **Key takeaway:** A smaller FOV corresponds to a larger Focal Length (Zoom in), while a larger FOV corresponds to a smaller Focal Length (Wide angle).
+
+**Dolly Zoom (Vertigo Shot)**
+- **Mechanism**: Move Camera (Dolly) $\leftrightarrow$ Inverse Lens Zoom.
+- **Effect**: Constant subject size + warped background perspective.
+  - **Dolly In + Zoom Out**: Background stretches/recedes.
+  - **Dolly Out + Zoom In**: Background compresses/crushes.
+
+
+**Exposure Balancing**
+- **Variables**: **Shutter Speed** (Time) & **Aperture** (F-number).
+- **Trade-off**: Same Exposure = $F \uparrow$ (smaller hole) + Speed $\downarrow$ (longer time).
+  - *Fast Shutter*: Freezes motion.
+  - *Slow Shutter*: Motion blur.
+
+**Lens Aberrations**
+- **Chromatic**: Color fringing/halos (wavelength refraction variance).
+- **Radial Distortion**:
+  - **Barrel**: Lines bulge outward (Wide-angle).
+  - **Pincushion**: Lines curve inward (Telephoto).
