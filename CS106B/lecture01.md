@@ -28,3 +28,16 @@ executes its statements in sequence.
 successful completion. A non-zero return value is an
 error code (we won’t use this method of error
 reporting in this class so we will always return zero)
+
+## C++ variables and types (1.5-1.8)
+
+* **Strict Typing**: Unlike Python, where types are implicit and "just happen," the C++ compiler is very strict about variable types.
+* **Mandatory Declaration**: You must "announce" (declare) a variable's type the first time you introduce it to the compiler.
+* **Static Typing**: Once a variable is declared with a specific type, it **cannot** be changed later. A C++ variable can only hold data of its declared type.
+* **Usage**: After the initial declaration, use only the variable name without repeating the type.
+
+**Example Syntax:**
+```
+int x = 42;        // Declaration: type (int) + name (x)
+x = x + 7;         // Usage: name only
+```
