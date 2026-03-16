@@ -45,6 +45,98 @@ These models treat action generation as an iterative refinement process.
 - **Diffusion Policy:** Starts with Gaussian noise and "denoises" it into a specific action mode.
 - **Action Chunking:** Instead of predicting $a_t$, the model predicts a sequence of future actions $[a_t, a_{t+1}, \dots, a_{t+k}]$. This ensures temporal consistency and smoother movements.
 
+# Flow Matching for Policy Learning
+
+### 1. Core Intuition: What is Flow Matching?
+
+While **Diffusion** generates actions by "slowly denoising" Gaussian noise, **Flow Matching** offers a more direct, geometric perspective:
+
+- **Vector Field:** Imagine space filled with "arrows." These arrows indicate the direction and velocity required to transform noise (disorder) into expert actions (order).
+- **Probability Path:** It defines a straight-line path from Gaussian noise $x_0 \sim \mathcal{N}(0,I)$ to an expert action $x_1$.
+- **The Goal:** Instead of learning to denoise, the neural network learns this **Vector Field** (Velocity Field). At any time $t$, the model predicts the "velocity" needed to push the current state along that straight line toward the expert action.
+
+------
+
+### 2. Mathematical Derivation
+
+The core of Flow Matching is finding a vector field $v_t(x)$ that generates a flow matching the target distribution.
+
+#### A. Defining the Probability Path
+
+We want to transform noise $x_0$ into expert action $x_1$. The simplest path is **Conditional Linear Interpolation**:
+
+$$x_t = \psi_t(x_1) = (1-t)x_0 + tx_1$$
+
+where $t \in [0, 1]$.
+
+- At $t=0$, $x_t = x_0$ (pure noise).
+- At $t=1$, $x_t = x_1$ (perfect expert action).
+
+#### B. Finding Target Velocity
+
+Velocity is the derivative of displacement with respect to time:
+
+$$v_t(x_1) = \frac{dx_t}{dt} = \frac{d}{dt} [(1-t)x_0 + tx_1] = x_1 - x_0$$
+
+This $x_1 - x_0$ is our **Target Velocity**. It tells us that moving in this constant direction will successfully turn noise into the desired action.
+
+#### C. Conditional Flow Matching Objective
+
+In practice, we don't know $x_0$ at inference time; we only know the current noisy state $x_t$. We train a network $v_\theta(x_t, t)$ to predict this target velocity:
+
+$$\mathcal{L}_{CFM} = \mathbb{E}_{t, x_0, x_1} [\| v_\theta(x_t, t) - (x_1 - x_0) \|^2]$$
+
+where $x_t = (1-t)x_0 + tx_1$.
+
+> **Key Insight:** This is essentially **Supervised Learning**.
+>
+> - **Input:** Current noisy action $x_t$ and time $t$.
+> - **Label:** The ideal velocity vector $(x_1 - x_0)$.
+
+------
+
+### 3. Training & Implementation (Lecture Analysis)
+
+The [PowerPoint Presentation](https://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-3.pdf) illustrates how to convert this math into a robotic policy:
+
+#### Training Process
+
+1. **Sampling:** Draw an expert action $x_1$ from the dataset and a noise sample $x_0$ from a Gaussian distribution.
+2. **Interpolation:** Randomly pick a time $t \in [0, 1]$ and calculate $x_t = (1-t)x_0 + tx_1$.
+3. **Prediction:** Input $x_t$, time $t$, and the current observation $O$ (e.g., image features) into the network $v_\theta$.
+4. **Optimization:** Minimize the **MSE Loss** between predicted velocity and the true direction $(x_1 - x_0)$.
+
+#### Inference (Sampling) Process
+
+When the robot performs the task:
+
+1. Start with pure noise $x_0$.
+
+2. **ODE Integration:** Use a simple **Euler Method** to iteratively update the action:
+
+   $$x_{t+\Delta t} = x_t + v_\theta(x_t, t, O) \cdot \Delta t$$
+
+3. After a few iterations, the noise transforms into a precise, continuous action sequence.
+
+------
+
+### 4. Comparison: Flow Matching vs. Diffusion
+
+| **Feature**             | **Diffusion (DDPM)**                        | **Flow Matching**                                      |
+| ----------------------- | ------------------------------------------- | ------------------------------------------------------ |
+| **Path Shape**          | Curved, stochastic diffusion paths          | **Straight paths** (Optimal Transport)                 |
+| **Training Complexity** | Complex variational bounds/noise prediction | **Simple Least Squares regression**                    |
+| **Sampling Speed**      | Requires many steps to be precise           | **High efficiency**; straight paths allow larger steps |
+| **Physical Intuition**  | "Erasing" noise                             | **"Moving" particles** (Kinematic)                     |
+
+------
+
+### 5. Summary
+
+Flow Matching redefines action generation as finding the **Optimal Path**. By utilizing **Conditional Flow Matching**, it avoids the complex probabilistic derivations required by Diffusion.
+
+In robotic control, its "straight-path" characteristic makes action generation extremely stable and fast. When combined with **Action Chunking**, the model predicts the evolution of an entire sequence $x$ within the vector field. This handles **multimodality** (the field can pull noise toward different peaks) and produces exceptionally smooth motions.
+
 ------
 
 ## 3. Narrow vs. Broad Data (The Pre-training Paradigm)
