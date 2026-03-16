@@ -1,4 +1,4 @@
-- 1. - 1. # Supervised Learning of Behaviors: Models and Scaling
+# Supervised Learning of Behaviors: Models and Scaling
 
 **Instructor:** Sergey Levine
 
