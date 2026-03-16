@@ -45,8 +45,6 @@ These models treat action generation as an iterative refinement process.
 - **Diffusion Policy:** Starts with Gaussian noise and "denoises" it into a specific action mode.
 - **Action Chunking:** Instead of predicting $a_t$, the model predicts a sequence of future actions $[a_t, a_{t+1}, \dots, a_{t+k}]$. This ensures temporal consistency and smoother movements.
 
-# Flow Matching for Policy Learning
-
 ### 1. Core Intuition: What is Flow Matching?
 
 While **Diffusion** generates actions by "slowly denoising" Gaussian noise, **Flow Matching** offers a more direct, geometric perspective:
