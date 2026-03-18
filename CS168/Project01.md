@@ -8,4 +8,6 @@
 
 ### Exploiting TTL
 
-send error message
+- send error message
+- UDP-over-IP
+
