@@ -116,6 +116,12 @@ Let $f, g$ be functions mapping $\mathbb{Z}^+ \to \mathbb{Z}^+$:
 
 ------
 
+## Matrix Multi
+
+Alg1 Navie
+
+Alg2 Divide  & Conquer
+
 ## 4. Master Theorem (Divide & Conquer)
 
 The Master Theorem provides a "cookbook" solution for recurrences of the form:
