@@ -98,17 +98,17 @@ Let $f, g$ be functions mapping $\mathbb{Z}^+ \to \mathbb{Z}^+$:
 - **Theta ($\Theta$):** $f = \Theta(g)$ if $f = O(g)$ and $f = \Omega(g)$. (Exact/Tight bound)
 
 > [!IMPORTANT]
-
+>
 > **Mathematical Rigor: Why $\limsup$?**
-
+>
 > Formally, $f(n) = O(g(n))$ is defined using the **limit superior** rather than a simple limit:
-
+>
 > $$\limsup_{n \to \infty} \frac{|f(n)|}{g(n)} < \infty$$
-
+>
 > This is crucial because a standard limit $\lim_{n \to \infty}$ might not exist if the function oscillates.
-
+>
 > **Example:** Consider $f(n) = n(2 + (-1)^n)$ and $g(n) = n$.
-
+>
 > - The ratio $\frac{f(n)}{g(n)} = 2 + (-1)^n$ oscillates between $1$ and $3$.
 > - $\lim_{n \to \infty} (2 + (-1)^n)$ **does not exist**.
 > - However, $\limsup_{n \to \infty} (2 + (-1)^n) = 3$, which is finite.
