@@ -19,3 +19,5 @@ addr = pc + opcode +1 +1
 $|data| = |\mu PC| + |control signals|$ 
 
 $$Total\ ROM\ size = \underbrace{2^{|address|}}_{\text{行数}} \times \underbrace{|data|}_{\text{每一行的宽度}}$$
+
+Iron Law
